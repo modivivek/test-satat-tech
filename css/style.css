@@ -1,0 +1,38 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.container{
+    width: 90vw;
+    margin: 70px auto;
+       
+}
+
+.form-container{
+    width:50vw;
+    margin: 20px auto;
+    background-color: orange;
+    padding: 20px;
+}
+.form-group{
+    margin-top:15px;
+    width: 90%;
+}
+#input-para,#output-para{
+    width: 95%;
+}
+.label-class{
+    display: flex;
+    align-items: center;
+    
+}
+.run-btn{
+    margin: 20px auto;
+    padding: 10px 15px;
+}
+
+@media  only screen and (max-width:600px) {    
+    .form-container{
+    width: 80vw;
+    }
+}
