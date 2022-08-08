@@ -1,18 +1,19 @@
 var para="";
 var skip=0;
+
 const getDataFromUI=()=>{
-para=document.querySelector("#input-para").value;
+ para=document.querySelector("#input-para").value;
 skip=document.querySelector("#skip-count").value;
-console.log("para",para,"skip count",skip)
+
 }
-getDataFromUI();
+
 
 document.querySelector(".run-btn").addEventListener("click",(event)=>{
     // get data from UI
     getDataFromUI();
     // reverse the string
-const result=reverseParagraph()
-document.querySelector("#output-para").value=result;
+
+document.querySelector("#output-para").value=reverseParagraph();
 })
 
 
@@ -22,38 +23,51 @@ document.querySelector("#output-para").value=result;
 
 function reverseParagraph(){
     let arr=[];
-    
+    let temp_res=""
     let i=0,j=0,k=0;
-    let result=""
+    let result="";
     // 1) split the paragram by .
-arr=para.split(".")
-console.log("split by dot",arr)
+arr=para.trim().split(".")
+
 
 for(i=0;i<arr.length;i++){
-    let temp_res=""
+    // split by spaces to get each word
+    temp_res=arr[i].trim().split(" ")
     if(skip == 0){
-        result+=arr[i];
-        
+        for(j=temp_res.length-1;j>=0;j--){
+            result=result+" "+ temp_res[j];
+        }
+        return result;
     }
     else{
+       // temp_res.shift()
         // if skip > 0 
-        temp_res=arr[i].split(" ")
+        console.log("temp_res---------",temp_res)
     
-
+       // if sentence is length of skip  then concat as it is
+        if(temp_res.length == skip){
+            result+=temp_res.join(" ")
+        }
+        else{
         // reverse the substring from skip to 0 using loop
-        for(j=skip;j>=0;j--){
-            result+=" "+temp_res[j]
+        for(j=skip-1;j >= 0;j--){
+            result=result+" "+temp_res[j]
         
         }
-        //concate rest string in each sentence (Last words)
+    }
+    
+         //concate rest string in each sentence (Last words)
         console.log("skip",skip)
-        for(k=skip;k<temp_res.length;k++){
-            result+=" "+temp_res[k];
-            console.log("Other part",temp_res[k])
+        for(k=skip;k <=temp_res.length-1;k++){
+            result=result+" "+temp_res[k];
+           // console.log("K value",k)
+           //console.log("Other part",temp_res[k])
         }
         
+        result=result+"."+" ";
+    
     }
 
 }
-return result;
+return result
 }
